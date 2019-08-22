@@ -1,0 +1,52 @@
+.registered {
+
+  .right{
+    width: 440px!important;
+    height: 410px!important;
+  }
+
+  .btn {
+    button {
+      margin-top: 0 !important;
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    a:hover {
+      color: #24abe7;
+    }
+  }
+}
+
+
+@media screen and (max-width: 768px){
+
+  .registered{
+
+    .box-form{
+      padding: 70px 0!important;
+
+      .right{
+        width: 380px!important;
+        border-radius:0!important;
+
+        .inputgroup{
+          .input{
+            width: 280px;
+            input{
+              width: 100%;
+            }
+          }
+          .btn{
+            width: 280px;
+          }
+        }
+      }
+    }
+  }
+}

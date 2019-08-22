@@ -1,0 +1,205 @@
+.home_body {
+
+  background: url("../../assets/img/home/banner1.jpg") no-repeat center top;
+
+  .box1{
+    position: relative;
+
+    .banner{
+      width: 100%;
+      text-align: center;
+      background-size: cover;
+
+      .slick-slider{
+        text-align: center;
+
+        a{
+          width: 100%;
+          display: block;
+          text-align: center;
+
+          img{
+            margin: 80px auto 240px;
+            width: 480px;
+          }
+        }
+      }
+    }
+
+    .recommend{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 10px 0 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+
+      .box{
+
+        .btns{
+
+          .ant-tabs-bar{
+            border-bottom: 0;
+
+            .ant-tabs-nav-scroll{
+              text-align: center;
+            }
+
+            .ant-tabs-tab{
+              color: rgba(255,255,255,0.5);
+            }
+
+            .ant-tabs-tab-active{
+              color: #fff;
+            }
+
+            .ant-tabs-ink-bar-animated{
+              background-color: #fff!important;
+            }
+          }
+        }
+
+        .content{
+          text-align: center;
+
+          li{
+            text-align: center;
+            display: inline-block;
+            margin: 0 30px;
+            width: 104px;
+
+            img{
+              width: 68px;
+            }
+
+            p{
+              font-size: 13px;
+              color: #fff;
+              margin-top: 5px;
+              margin-bottom:10px;
+            }
+          }
+
+          li:hover{
+            background: rgba(255, 255, 255, 0.13);
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+
+
+  .box2{
+    background: rgba(0, 0, 0, 0.25);
+    padding: 60px 0;
+
+    .lotteryGame{
+      background: #333;
+      height: 400px;
+      position: relative;
+
+      img{
+        position: absolute;
+        top: 50px;
+        left: 60px;
+        font-size: 38px;
+        color: #fff;
+      }
+    }
+
+    .mobile{
+      background: #333;
+      height: 400px;
+      text-align: center;
+
+      img{
+        width: 80px;
+      }
+
+      .gName{
+        color: #fff;
+        font-size: 13px;
+      }
+    }
+    .otherGame{
+      height: 240px;
+      margin-top: 16px;
+      background: #333;
+    }
+
+    .casino{
+      background: url("../../assets/img/home/casino.jpg") no-repeat;
+      background-size:cover;
+    }
+
+    .sport{
+      background: url("../../assets/img/home/sport.jpg") no-repeat;
+      background-size:cover;
+    }
+
+    .slot{
+      background: url("../../assets/img/home/slot.jpg") no-repeat;
+      background-size:cover;
+    }
+    .game-text{
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      text-align: center;
+      padding-top: 75px;
+      transition: .3s;
+
+      p:first-child{
+        font-size: 32px;
+      }
+
+      p:last-child{
+        font-size: 20px;
+      }
+    }
+    .game-text:hover{
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .box3{
+    padding: 60px 0 60px;
+    background: rgba(0, 0, 0, 0.35);
+
+    .title{
+      text-align: center;
+
+      span{
+        display: inline-block;
+        font-size: 32px;
+        border-bottom: 2px solid #FBA026;
+        padding-bottom: 5px;
+        color: #fff;
+      }
+    }
+
+    .aboutUs{
+      width: 1000px;
+      font-size: 13px;
+      text-align: center;
+      margin: 30px auto;
+      color: rgba(255,255,255,0.67);
+    }
+
+    .ant-card{
+      background: rgba(0,0,0,0.2);
+    }
+
+    .ant-card-head{
+      color: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ant-card-body{
+      color: rgba(255, 255, 255, 0.65);
+    }
+  }
+
+}

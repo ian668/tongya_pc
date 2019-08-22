@@ -1,0 +1,610 @@
+//============================
+//HEADER头部
+//============================
+
+.header{
+  
+  .top{
+    height: 72px;
+    background: #1c5abb;
+    padding: 0 20px;
+    position: relative;
+
+    .left{
+      display: inline-block;
+
+      .leftBtn{
+
+        div{
+          display: inline-block;
+          margin-right: 20px;
+          padding: 22px 0px;
+
+          i{
+            font-size: 15px;
+            color: #fff;
+            border: 1.1px solid #fff;
+            border-radius: 50%;
+            line-height: 28px;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+          }
+
+          span{
+            color: #fff;
+            font-size: 13px;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+
+    .logo{
+      position: absolute;
+      left: 50%;
+      margin-left: -64px;
+      top: 18px;
+
+      img{
+        height: 38px;
+      }
+    }
+
+    .right{
+      float: right;
+
+      .money{
+        display: inline-block;
+        color: #fff;
+        vertical-align: middle;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px 15px 26px;
+
+        a{
+          color: #fff;
+        }
+
+        a:hover{
+          color: rgba(255,255,255,0.8);
+        }
+
+        i{
+          color: #fff;
+          font-size: 18px;
+          margin: 0 8px;
+          vertical-align: bottom;
+        }
+      }
+
+      .rightBtn{
+        display: inline-block;
+        vertical-align: top;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 14px 15px 13px;
+        text-align: center;
+
+        a{
+          color: #fff;
+          display: inline-block;
+          padding: 0 10px;
+        }
+
+        a:hover{
+          color: rgba(255,255,255,0.8);
+        }
+
+        i{
+          font-size: 18px;
+        }
+
+        p{
+          font-size: 13px;
+          line-height: 24px;
+        }
+      }
+
+      .userInfo{
+        display: inline-block;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 0 20px 0 20px;
+        position: relative;
+
+        .userBtn{
+          position: relative;
+
+          img{
+            width: 24px;
+          }
+
+          p{
+            line-height: 32px;
+          }
+
+          .mail{
+            min-width: 16px;
+            height: 16px;
+            font-size: 12px;
+            line-height: 16px;
+            border-radius: 10px;
+            background: #ea4040;
+            position: absolute;
+            top: -3px;
+            right: 3px;
+          }
+        }
+
+        i{
+          position: absolute;
+          right: 0px;
+          top: 20px;
+        }
+      }
+    }
+  }
+  
+  .nav{
+    text-align: center;
+    background: #2565cb;
+
+    a{
+      display: inline-block;
+      color: #fff;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      padding: 13px 0;
+
+      span{
+        line-height: 10px;
+        font-size: 14px;
+        padding: 0 32px;
+        display: block;
+        border-right: 1px dotted rgba(255,255,255,0.2);
+      }
+    }
+
+    a:hover{
+      border-bottom-color: #fff;
+    }
+  }
+}
+
+
+.userInfoBox{
+
+  .ant-popover-arrow{
+    right: 36px !important
+  }
+
+  .InfoBox{
+    width: 220px;
+
+    .type{
+      padding-right: 10px;
+    }
+
+    .userName{
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 16px;
+      text-align: center;
+      padding-top: 5px;
+    }
+
+    .userType{
+      text-align: center;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 10px 0 12px;
+    }
+
+    .lastLogin{
+      font-size: 13px;
+      padding: 12px 0px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+
+      span{
+        line-height: 28px;
+      }
+
+      .title{
+        width: 70px;
+        text-align: right;
+        display: inline-block;
+      }
+    }
+
+    .loginOut{
+      text-align: center;
+      width: 100%;
+      padding-bottom: 10px;
+
+      button{
+        width: 200px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+//============================
+//彩票下拉菜单
+//============================
+
+
+.lotteryMenu{
+  top: 90px !important;
+
+  .game_list_box{
+    border-bottom: 1px solid #eee;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+
+    .title{
+      margin-top: 17px;
+      color: #999;
+      padding-left: 10px;
+      width: 100px;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 13px;
+
+    }
+
+    .game_list{
+      display: inline-block;
+      vertical-align: top;
+      width: 630px;
+      margin-top: 12px;
+
+      .list{
+        padding-bottom: 2px;
+      }
+    }
+
+    a{
+      padding: 5px;
+      border: 1px solid rgba(0,0,0,0.1);
+      display: inline-block;
+      margin: 0 10px 10px 0;
+      font-size: 12px;
+      width: 94px;
+      text-align: center;
+    }
+    a:hover{
+      border-color: #24abe7;
+      color: #24abe7;
+    }
+  }
+
+  .game_list_box:last-child{
+    border-bottom: 0;
+  }
+  
+  .game_list_box:nth-child(odd){
+    background: #f9f9f9;
+  }
+
+  .game_list_box:hover{
+    background: #f5f6f7;
+    border-left: 2px solid #22abe7;
+  }
+}
+
+
+//============================
+//个人中心下拉菜单
+//============================
+.userCenter{
+  top: 31px !important;
+}
+.account_center{
+  font-size: 13px;
+
+  li{
+    padding: 10px 0;
+    .left{
+      display: inline-block;
+      width: 120px;
+      border-right: 1px solid #eee;
+      padding-left: 10px;
+      vertical-align: top;
+      line-height: 18px;
+      margin: 9px 0;
+    }
+
+    .right{
+      display: inline-block;
+      padding-left: 16px;
+      min-width: 460px;
+      max-width: 500px;
+      vertical-align: top;
+
+      a{
+        line-height: 36px;
+        margin: 0 15px;
+        display: inline-block;
+        border-bottom: 1px solid #fff0;
+        color: #666;
+      }
+
+      a:hover{
+        color: #ff4040;
+        border-bottom: 1px solid #ff4040;
+      }
+    }
+  }
+
+  li:nth-child(even){
+    background: #705d8c08;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  i{
+    font-size: 16px;
+    color: #ff4040;
+    margin-right: 10px;
+  }
+
+}
+
+
+
+//============================
+//FOOTER页面底部样式
+//============================
+
+.footer{
+  background: #262732;
+  width: 100%;
+  color: #fff;
+
+  .logo{
+    background: #1e2331;
+
+    .left{
+      display: inline-block;
+      img{
+        height: 34px;
+        margin: 13px 0;
+        filter: grayscale(1);
+      }
+    }
+    .right{
+      display: inline-block;
+      float: right;
+      text-align: right;
+
+      li{
+        display: inline-block;
+        font-size: 12px;
+        padding-left: 15px;
+        line-height: 58px;
+
+        a{
+          color: rgba(255,255,255,0.5);
+        }
+        a:hover{
+          color: #fff;
+        }
+
+        span{
+          color: rgba(255,255,255,0.5);
+        }
+
+        img{
+          width: 24px;
+          opacity: 0.5;
+        }
+      }
+
+
+    }
+  }
+
+  .content{
+    background: #212737;
+    height: 130px;
+    .left{
+      display: inline-block;
+      margin-top: 30px;
+      div{
+        display: inline-block;
+        margin-right: 30px;
+
+        p{
+          font-size: 12px;
+          color: rgba(255,255,255,0.5);
+        }
+        img{
+          margin-top: 20px;
+          height: 28px;
+        }
+      }
+    }
+
+
+    .right{
+      float: right;
+      text-align: right;
+      margin: 17px 0;
+
+      p{
+        font-size: 12px;
+        margin-top: 10px;
+
+        span{
+          color: #cbe0ef;
+        }
+      }
+    }
+  }
+}
+
+
+//============================
+//右侧悬浮导航样式
+//============================
+
+
+.side{
+  position: fixed;
+  right: 10px;
+  top: 30%;
+  text-align: center;
+
+  ul{
+    width: 44px;
+
+    li{
+      background: #1890ff;
+      border-bottom: 0.5px solid rgba(255,255,255,0.1);
+
+      a{
+        font-size: 12px;
+        color: #fff;
+        padding: 10px 0;
+        display: block;
+      }
+
+      .button{
+        font-size: 12px;
+        color: #fff;
+        padding: 10px 0;
+        display: block;
+      }
+
+      i{
+        font-size: 18px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .ant-back-top{
+        position: inherit;
+        color: #fff;
+        padding: 10px 0;
+        height: auto;
+        width: auto;
+        font-size: 12px;
+      }
+    }
+    li:last-child{
+      border-bottom: 0;
+    }
+    li:hover{
+      background: #1386ef;
+    }
+  }
+}
+
+
+//============================
+//内页导航样式
+//============================
+
+
+.sidemenu{
+  position: absolute;
+  left: 0px;
+  background: #1890ff;
+
+  .title{
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background: #f5f5f5;
+    line-height: 60px;
+    border-bottom: 1px solid #eee;
+
+    i{
+      margin-right: 10px;
+    }
+  }
+
+  .ant-menu-submenu-title{
+    padding-left: 15px!important;
+    span{
+      font-size: 13px;
+    }
+  }
+
+  a{
+    font-size: 13px;
+  }
+
+  .ant-menu-inline{
+    border-color: #f5f5f5;
+
+    li{
+
+      .ant-menu-item{
+        padding-left: 42px!important;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .anticon{
+    font-size: 16px!important;
+  }
+
+}
+
+
+
+
+.S_header{
+  background: #1e2331;
+  height: 64px;
+
+  .left{
+    display: inline-block;
+    margin: 12px 0;
+
+    img{
+      height: 40px;
+    }
+  }
+
+  .right{
+    float: right;
+    margin: 16px 0;
+
+    button{
+      font-size: 13px;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+
+.appDownload{
+  padding: 30px 0 15px;
+  text-align: center;
+
+  img{
+    width: 180px;
+  }
+
+  p{
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  span{
+    color: #666;
+    font-size: 13px;
+  }
+}
+
+

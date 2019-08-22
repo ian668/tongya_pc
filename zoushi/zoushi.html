@@ -1,0 +1,1882 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css?v=121daf21">
+    <title>走势图</title>
+    <style>
+        .text{
+            font-size: 12px;
+        }
+        .p_btn{
+            width: 50px;
+            outline: none;
+            border-radius: 5px;
+            border:1px solid #ddd;
+            padding: 10px;
+            box-shadow: none;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .p_btn_m{
+            width: 80px;
+            outline: none;
+            border-radius: 5px;
+            border:1px solid #ddd;
+            padding: 10px;
+            box-shadow: none;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .modal-body{
+            position: relative;
+            margin:20% auto;
+            padding: 10px;
+            background: #fff;
+            height: 320px;
+            overflow-y: auto;
+            width: 95%;
+            border-radius: 10px;
+        }
+        .active{
+            background: #f44!important;
+            color: #fff;
+        }
+        .hidden{
+            display: none;
+        }
+        .td_da,.long_active{
+            background: #1ba3f3;
+            color: #fff!important;
+        }
+        .he_active{
+            background: #35b581;
+            color: #fff!important;
+        }
+        .td_xiao,.hu_active{
+            background: #1a919e;
+            color: #fff!important;
+        }
+        .pepile{
+            color: #f44!important;
+        }
+        .green{
+            color: #35b581!important;
+        }
+        .zise{
+            color:#554ccc!important;
+        }
+        .fense{
+            color: #c54ccc!important;
+        }
+        .details-table tbody th span.ball_active{
+            background: #217971;
+            color: #fff;
+            position: relative;
+        }
+        .strong_on{
+            position: absolute;
+            top: -5px;
+            display: inline-block;
+            background: #f00;
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            line-height: 15px;
+        }
+        .close_btn{
+            border-radius: 5px;
+            border:1px solid #1ba3f3;
+            background: #1ba3f3;
+            outline: none;
+            padding: 5px 10px;
+            color: #fff;
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+        }
+        button.longhu{
+            width: 50px;
+            padding: 5px;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btns">
+        <div class="btn">
+            <div class="title">
+                <!--type：0=>单号走势 1=>多号走势 2=>大小走势 3=>单双走势-->
+                <span id="zoushi-desc" type='0'>单号走势-万</span>
+            </div>
+            <div id="qishu" class="link" style="margin-left: 15px;float: left;">
+                <a href="javascript:void(0);" id="qi30" class="active" data-qi="30">30期</a>
+                <a href="javascript:void(0);" id="qi50" data-qi="50">50期</a>
+                <a href="javascript:void(0);" id="qi100" data-qi="100">100期</a>
+            </div>
+            <a href="javascript:void(0)" onclick="showModal()" id="setting" style="position: absolute;top: 15px;right: 15px;"><img src="setting.png" style="width: 20px;height: 20px;" alt=""></a>
+        </div>
+    </div>
+    <!--大小走势-->
+    <div class="content hidden" id="waitBox_dx">
+        <div>
+            <table width="100%" border="0" class="details-table">
+                <thead id="dxwqb" class="hidden">
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th style="width:35px">万</th>
+                        <th style="width:35px">千</th>
+                        <th style="width:35px">百</th>
+                        <th colspan="2">万位</th>
+                        <th></th>
+                        <th colspan="2">千位</th>
+                        <th></th>
+                        <th colspan="2">百位</th>
+                    </tr>
+                </thead>
+                <thead id="dxbsg" class="hidden">
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th style="width:35px">百</th>
+                        <th style="width:35px">十</th>
+                        <th style="width:35px">个</th>
+                        <th colspan="2">百位</th>
+                        <th></th>
+                        <th colspan="2">十位</th>
+                        <th></th>
+                        <th colspan="2">个位</th>
+                    </tr>
+                </thead>
+                <tbody id="daxiao-list-data">
+                    <tr>
+                        <th>数据加载中.</th>
+                        <th><span class="tip">0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span></span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span></span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--单双走势-->
+    <div class="content hidden" id="waitBox_ds">
+        <div>
+            <table width="100%" border="0" class="details-table">
+                <thead id="dxwqb_ds" class="hidden">
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th style="width:35px">万</th>
+                        <th style="width:35px">千</th>
+                        <th style="width:35px">百</th>
+                        <th colspan="2">万位</th>
+                        <th></th>
+                        <th colspan="2">千位</th>
+                        <th></th>
+                        <th colspan="2">百位</th>
+                    </tr>
+                </thead>
+                <thead id="dxbsg_ds" class="hidden">
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th style="width:35px">百</th>
+                        <th style="width:35px">十</th>
+                        <th style="width:35px">个</th>
+                        <th colspan="2">百位</th>
+                        <th></th>
+                        <th colspan="2">十位</th>
+                        <th></th>
+                        <th colspan="2">个位</th>
+                    </tr>
+                </thead>
+                <tbody id="danshuan-list-data">
+                    <tr>
+                        <th>数据加载中.</th>
+                        <th><span class="tip">0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span></span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span></span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--单号走势--->
+    <div class="content" id="waitBox">
+        <div id="chartLinediv">
+            <table width="100%" border="0" class="details-table">
+                <thead>
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th style="width:35px">号码</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                    </tr>
+                </thead>
+                <tbody id="list-data">
+                    <tr>
+                        <th>数据加载中.</th>
+                        <th><span class="tip">0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                    </tr>
+                </tbody>
+            </table>
+            <table width="100%" border="0" class="details-table" id="data">
+                <thead>
+                    <tr>
+                        <th style="width: 100px">数据统计</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                    </tr>
+                </thead>
+                <tbody id="count-data">
+                    <tr>
+                        <th>总次数</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>1</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>平均遗漏</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>1</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>最大连出</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>1</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th>最大遗漏</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>4</th>
+                        <th>3</th>
+                        <th>1</th>
+                        <th>2</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--多号走势--->
+    <div class="content hidden" id="waitBox_duohao">
+        <div>
+            <table width="100%" border="0" class="details-table">
+                <thead>
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                    </tr>
+                </thead>
+                <tbody id="duohao-list-data">
+                    <tr>
+                        <th>数据加载中.</th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--龙虎走势-->
+    <div class="content hidden" id="waitBox_longhu">
+        <div>
+            <table width="100%" border="0" class="details-table">
+                <thead id="longhu_header">
+                    <tr>
+                        <th style="width:65px">期号</th>
+                        <th id="lh_item_0" style="width:35px">万</th>
+                        <th id="lh_item_1" style="width:35px">千</th>
+                        <th>龙</th>
+                        <th>和</th>
+                        <th>虎</th>
+                        <th id="lh_item_2" style="width:35px">万</th>
+                        <th id="lh_item_3" style="width:35px">百</th>
+                        <th>龙</th>
+                        <th>和</th>
+                        <th>虎</th>
+                    </tr>
+                </thead>
+                <tbody id="longhu-list-data">
+                    <tr>
+                        <th>数据加载中.</th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                        <th><span>0</span></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--模态框--->
+    <div class="modal hidden" id="modal" style="width: 100%;height: 100%; position: absolute;z-index: 1000;background-color: rgba(0,0,0,0.5);top: 0;left: 0;">
+        <div class="modal-body">
+            <ul class="bigtype">
+                <li id="weizhi">
+                    <span class="text">单号:</span>
+                    <button class="p_btn active danhao" data-type="0" data-wei="wan" data-desc="单号走势-万">万位</button>
+                    <button class="p_btn danhao" data-type="0" data-wei="qian" data-desc="单号走势-千">千位</button>
+                    <button class="p_btn danhao" data-type="0" data-wei="bai" data-desc="单号走势-百">百位</button>
+                    <button class="p_btn danhao" data-type="0" data-wei="shi" data-desc="单号走势-十">十位</button>
+                    <button class="p_btn danhao" data-type="0" data-wei="ge" data-desc="单号走势-个">个位</button>
+                </li>
+                <li>
+                    <span class="text">多号:</span>
+                    <button class="p_btn" data-type="1" data-ptype="0" data-desc="多号走势-后二">后二</button>
+                    <button class="p_btn" data-type="1" data-ptype="1" data-desc="多号走势-前二">前二</button>
+                </li>
+                <li>
+                    <span class="text">大小:</span>
+                    <button class="p_btn p_btn_m" data-type="2" data-ptype="0" data-desc="大小走势-万千百">万千百</button>
+                    <button class="p_btn p_btn_m" data-type="2" data-ptype="1" data-desc="大小走势-百十个">百十个</button>
+                </li>
+                <li>
+                    <span class="text">单双:</span>
+                    <button class="p_btn p_btn_m" data-type="3" data-ptype="0" data-desc="单双走势-万千百">万千百</button>
+                    <button class="p_btn p_btn_m" data-type="3" data-ptype="1" data-desc="单双走势-百十个">百十个</button>
+                </li>
+                <li>
+                    <span>龙虎:</span>
+                    <button class="p_btn p_btn_m longhu" data-type="4" data-name="万,千,万,百" data-ptype="0" data-desc="龙虎走势-万千百">万千<br />万百</button>
+                    <button class="p_btn p_btn_m longhu" data-type="4" data-name="万,十,万,个" data-ptype="1" data-desc="龙虎走势-万十个">万十<br />万个</button>
+                    <button class="p_btn p_btn_m longhu" data-type="4" data-name="千,百,千,十" data-ptype="2" data-desc="龙虎走势-千百十">千百<br />千十</button>
+                    <button class="p_btn p_btn_m longhu" data-type="4" data-name="千,个,百,十" data-ptype="3" data-desc="龙虎走势-千百十个">千个<br />百十</button>
+                    <button class="p_btn p_btn_m longhu" data-type="4" data-name="百,个,十,个" data-ptype="3" data-desc="龙虎走势-百十个">百个<br />十个</button>
+                </li>
+            </ul>
+            <button id="close_btn" onclick="closeModal()" class="close_btn">关闭</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="lines.js"></script>
+    <script type="text/javascript">
+    let lotteryId;
+
+    function showModal() {
+        $('#modal').removeClass('hidden');
+    }
+
+    function closeModal() {
+        $('#modal').addClass('hidden');
+    }
+
+    $(function($) {
+        URL;
+        let urlString = window.location.href,
+            resultData = false,
+            url = new URL(urlString),
+            paramId = parseInt(url.searchParams.get('lottery_id')),
+            number_data = [];
+        lotteryId = paramId ? paramId : 1;
+        //请求走势图数据
+        $.ajax({
+            type: 'GET',
+            url: '/userspay/zoushi',
+            data: { 'lottery_id': lotteryId },
+            beforeSend: function() {
+                // console.log('请求数据开始');
+            },
+            success: function(response) {
+                // console.log(response);
+                resultData = response;
+                number_data = response.number_data;
+                let type = window.localStorage.getItem('play_type_' + lotteryId) || 0;
+                let desc = window.localStorage.getItem('zoushi-desc-' + lotteryId) || '单号走势-万';
+                let ptype = window.localStorage.getItem('ptype_' + lotteryId) || 0;
+                let num = window.localStorage.getItem('qishu_' + lotteryId) || 30;
+                let lh_name = window.localStorage.getItem('lh_name' + lotteryId) || "万,千,万,百";
+                $('#qishu').find('#qi' + num).addClass('active').siblings('a').removeClass('active');
+                document.getElementById('zoushi-desc').innerText = desc;
+                document.getElementById('zoushi-desc').setAttribute('type', type);
+                switch (type) {
+                    case '0':
+                        showData(resultData);
+                        break;
+                    case '1':
+                        $('canvas').hide();
+                        resetLayout();
+                        $('#waitBox_duohao').removeClass('hidden');
+                        // let ptype = $(this).data('ptype').toString();
+                        document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                        renderDuoHao(number_data, ptype, num);
+                        break;
+                    case '2':
+                        $('canvas').hide();
+                        resetLayout();
+                        $('#waitBox_dx').removeClass('hidden');
+                        document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                        if (ptype === '0') {
+                            document.getElementById('dxwqb').classList.remove('hidden');
+                            document.getElementById('dxbsg').classList.add('hidden');
+                        } else {
+                            document.getElementById('dxbsg').classList.remove('hidden');
+                            document.getElementById('dxwqb').classList.add('hidden');
+                        }
+                        renderDaXiao(number_data, ptype, num);
+                        break;
+                    case '3':
+                        $('canvas').hide();
+                        resetLayout();
+                        $('#waitBox_ds').removeClass('hidden');
+                        document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                        if (ptype === '0') {
+                            document.getElementById('dxwqb_ds').classList.remove('hidden');
+                            document.getElementById('dxbsg_ds').classList.add('hidden');
+                        } else {
+                            document.getElementById('dxbsg_ds').classList.remove('hidden');
+                            document.getElementById('dxwqb_ds').classList.add('hidden');
+                        }
+                        renderDanShuang(number_data, ptype, num);
+                        break;
+                    case '4':
+                        $('canvas').hide();
+                        resetLayout();
+                        $('#waitBox_longhu').removeClass('hidden');
+                        document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                        let name_array = lh_name.split(',');
+                        for (var i = 0; i < 4; i++) {
+                            $('#lh_item_' + i).text(name_array[i]);
+                        }
+                        renderLongHu(number_data, ptype, num);
+                        break;
+                    default:
+                        showData(resultData);
+                        break;
+                }
+
+            },
+            error: function() {
+                // alert('网络错误!');
+            },
+            complete: function() {
+                // console.log('请求数据完成');
+            }
+        });
+        //大小连出遗漏
+        function renderDaXiaoFooter(data, type, num) {
+            let temp_data = data.slice(-num),
+                da1,
+                da2,
+                da1_qian,
+                da2_qian,
+                da1_bai,
+                da2_bai,
+                p1, p2, p3,
+                showcount_da = 0,
+                showcount_xiao = 0,
+                showcount_qian_da = 0,
+                showcount_qian_xiao = 0,
+                showcount_bai_da = 0,
+                showcount_bai_xiao = 0,
+                j = 0,
+                j_qian = 0,
+                j_bai = 0,
+                zdyl1_da = [], //最大遗漏位置1大
+                zdyl1_xiao = [], //最大遗漏位置1小
+                zdyl2_da = [], //最大遗漏位置2大
+                zdyl2_xiao = [], //最大遗漏位置2小
+                zdyl3_da = [], //最大遗漏位置3大
+                zdyl3_xiao = []; //最大遗漏位置3小
+            for (var i = 0; i < temp_data.length; i++) {
+                let element = temp_data[i];
+                if (type === '0') {
+                    p1 = element['data'][0];
+                    p2 = element['data'][1];
+                    p3 = element['data'][2];
+                } else {
+                    p1 = element['data'][2];
+                    p2 = element['data'][3];
+                    p3 = element['data'][4];
+                }
+                if (Number(p1) > 4) {
+                    if (da2 === '小') {
+                        zdyl1_xiao.push(j);
+                        j = 0;
+                    }
+                    da1 = '大';
+                    da2 = ++j;
+                    ++showcount_da;
+                } else {
+                    if (da1 === '大') {
+                        zdyl1_da.push(j);
+                        j = 0;
+                    }
+                    da2 = '小';
+                    da1 = ++j;
+                    ++showcount_xiao;
+                }
+                if (Number(p2) > 4) {
+                    if (da2_qian === '小') {
+                        zdyl2_xiao.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = '大';
+                    da2_qian = ++j_qian;
+                    ++showcount_qian_da;
+                } else {
+                    if (da1_qian === '大') {
+                        zdyl2_da.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da2_qian = '小';
+                    da1_qian = ++j_qian;
+                    ++showcount_qian_xiao;
+                }
+                if (Number(p3) > 4) {
+                    if (da2_bai === '小') {
+                        zdyl3_xiao.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = '大';
+                    da2_bai = ++j_bai;
+                    ++showcount_bai_da;
+                } else {
+                    if (da1_bai === '大') {
+                        zdyl3_da.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da2_bai = '小';
+                    da1_bai = ++j_bai;
+                    ++showcount_bai_xiao;
+                }
+            }
+            let footer = `<tr>
+                            <th class="pepile">出现次数</th>
+                            <th colspan="3"></th>
+                            <th class="pepile">` + showcount_da + `</th>
+                            <th class="pepile">` + showcount_xiao + `</th>
+                            <th></th>
+                            <th class="pepile">` + showcount_qian_da + `</th>
+                            <th class="pepile">` + showcount_qian_xiao + `</th>
+                            <th></th>
+                            <th class="pepile">` + showcount_bai_da + `</th>
+                            <th class="pepile">` + showcount_bai_xiao + `</th>
+                        </tr>
+                        <tr>
+                            <th class="green">最大连出</th>
+                            <th colspan="3"></th>
+                            <th class="green">` + Math.max(...zdyl1_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_xiao) + `</th>
+                            <th></th>
+                            <th class="green">` + Math.max(...zdyl2_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl2_xiao) + `</th>
+                            <th></th>
+                            <th class="green">` + Math.max(...zdyl3_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl3_xiao) + `</th>
+                        </tr>
+                        <tr>
+                            <th class="zise">最大遗漏</th>
+                            <th colspan="3"></th>
+                            <th class="zise">` + Math.max(...zdyl1_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl1_da) + `</th>
+                            <th></th>
+                            <th class="zise">` + Math.max(...zdyl2_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl2_da) + `</th>
+                            <th></th>
+                            <th class="zise">` + Math.max(...zdyl3_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl3_da) + `</th>
+                        </tr>
+                        `;
+            return footer;
+
+        }
+        //大小渲染
+        function renderDaXiao(data, type, num) {
+            let str = '',
+                p1, p2, p3,
+                j = 0,
+                j_qian = 0,
+                j_bai = 0,
+                da1,
+                da2,
+                daclass,
+                xiaoclass,
+                da1_qian,
+                da2_qian,
+                daclass_qian,
+                xiaoclass_qian,
+                da1_bai,
+                da2_bai,
+                daclass_bai,
+                xiaoclass_bai,
+                showcount_da = 0,
+                showcount_xiao = 0,
+                showcount_qian_da = 0,
+                showcount_qian_xiao = 0,
+                showcount_bai_da = 0,
+                showcount_bai_xiao = 0,
+                zdyl1_da = [], //最大遗漏位置1大
+                zdyl1_xiao = [], //最大遗漏位置1小
+                zdyl2_da = [], //最大遗漏位置2大
+                zdyl2_xiao = [], //最大遗漏位置2小
+                zdyl3_da = [], //最大遗漏位置3大
+                zdyl3_xiao = []; //最大遗漏位置3小
+            str_arr = [];
+            for (var i = 0; i < data.length; i++) {
+                let element = data[i];
+                if (type === '0') {
+                    p1 = element['data'][0];
+                    p2 = element['data'][1];
+                    p3 = element['data'][2];
+                } else {
+                    p1 = element['data'][2];
+                    p2 = element['data'][3];
+                    p3 = element['data'][4];
+                }
+                if (Number(p1) > 4) {
+                    if (da2 === '小') {
+                        // zdyl1_xiao.push(j);
+                        j = 0;
+                    }
+                    da2 = ++j;
+                    da1 = '大';
+                    daclass = 'td_da';
+                    xiaoclass = '';
+                    // ++showcount_da;
+                } else {
+                    if (da1 === '大') {
+                        // zdyl1_da.push(j);
+                        j = 0;
+                    }
+                    da1 = ++j;
+                    da2 = '小';
+                    daclass = '';
+                    xiaoclass = 'td_xiao';
+                    // ++showcount_xiao;
+                }
+                if (Number(p2) > 4) {
+                    if (da2_qian === '小') {
+                        // zdyl2_xiao.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = '大';
+                    daclass_qian = 'td_da';
+                    xiaoclass_qian = '';
+                    da2_qian = ++j_qian;
+                    // ++showcount_qian_da;
+                } else {
+                    if (da1_qian === '大') {
+                        // zdyl2_da.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = ++j_qian;
+                    da2_qian = '小';
+                    daclass_qian = '';
+                    xiaoclass_qian = 'td_xiao';
+                    // ++showcount_qian_xiao;
+                }
+                if (Number(p3) > 4) {
+                    if (da2_bai === '小') {
+                        // zdyl3_xiao.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = '大';
+                    daclass_bai = 'td_da';
+                    xiaoclass_bai = '';
+                    da2_bai = ++j_bai;
+                    // ++showcount_bai_da;
+                } else {
+                    if (da1_bai === '大') {
+                        // zdyl3_da.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = ++j_bai;
+                    da2_bai = '小';
+                    daclass_bai = '';
+                    xiaoclass_bai = 'td_xiao';
+                    // ++showcount_bai_xiao;
+                }
+
+                str = `<tr>
+                            <th>` + element['issue'] + `</th>
+                            <th><span class="tip">` + p1 + `</span></th>
+                            <th><span class="tip">` + p2 + `</span></th>
+                            <th><span class="tip">` + p3 + `</span></th>
+                            <th class=` + daclass + `><span>` + da1 + `</span></th>
+                            <th class=` + xiaoclass + `><span>` + da2 + `</span></th>
+                            <th><span></span></th>
+                            <th class=` + daclass_qian + `><span>` + da1_qian + `</span></th>
+                            <th class=` + xiaoclass_qian + `><span>` + da2_qian + `</span></th>
+                            <th><span></span></th>
+                            <th class=` + daclass_bai + `><span>` + da1_bai + `</span></th>
+                            <th class=` + xiaoclass_bai + `><span>` + da2_bai + `</span></th>
+                        </tr>
+                        `;
+                str_arr.push(str);
+            }
+            let footer = renderDaXiaoFooter(data, type, num);
+            document.getElementById('daxiao-list-data').innerHTML = str_arr.slice(-num).join('') + footer;
+        }
+
+        //单双footer
+        function renderDanShuangFooter(data, type, num) {
+            let temp_data = data.slice(-num),
+                da1,
+                da2,
+                da1_qian,
+                da2_qian,
+                da1_bai,
+                da2_bai,
+                p1, p2, p3,
+                showcount_da = 0,
+                showcount_xiao = 0,
+                showcount_qian_da = 0,
+                showcount_qian_xiao = 0,
+                showcount_bai_da = 0,
+                showcount_bai_xiao = 0,
+                j = 0,
+                j_qian = 0,
+                j_bai = 0,
+                zdyl1_da = [], //最大遗漏位置1大
+                zdyl1_xiao = [], //最大遗漏位置1小
+                zdyl2_da = [], //最大遗漏位置2大
+                zdyl2_xiao = [], //最大遗漏位置2小
+                zdyl3_da = [], //最大遗漏位置3大
+                zdyl3_xiao = []; //最大遗漏位置3小
+            for (var i = 0; i < temp_data.length; i++) {
+                let element = temp_data[i];
+                if (type === '0') {
+                    p1 = element['data'][0];
+                    p2 = element['data'][1];
+                    p3 = element['data'][2];
+                } else {
+                    p1 = element['data'][2];
+                    p2 = element['data'][3];
+                    p3 = element['data'][4];
+                }
+                if (Number(p1) % 2 === 1) {
+                    if (da2 === '双') {
+                        zdyl1_xiao.push(j);
+                        j = 0;
+                    }
+                    da2 = ++j;
+                    da1 = '单';
+                    ++showcount_da;
+                } else {
+                    if (da1 === '单') {
+                        zdyl1_da.push(j)
+                        j = 0;
+                    }
+                    da1 = ++j;
+                    da2 = '双';
+                    ++showcount_xiao;
+                }
+                if (Number(p2) % 2 === 1) {
+                    if (da2_qian === '双') {
+                        zdyl2_xiao.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = '单';
+                    da2_qian = ++j_qian;
+                    ++showcount_qian_da;
+                } else {
+                    if (da1_qian === '单') {
+                        zdyl2_da.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = ++j_qian;
+                    da2_qian = '双';
+                    ++showcount_qian_xiao;
+                }
+                if (Number(p3) % 2 === 1) {
+                    if (da2_bai === '双') {
+                        zdyl3_xiao.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = '单';
+                    da2_bai = ++j_bai;
+                    ++showcount_bai_da;
+                } else {
+                    if (da1_bai === '单') {
+                        zdyl3_da.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = ++j_bai;
+                    da2_bai = '双';
+                    ++showcount_bai_xiao;
+                }
+            }
+            let footer = `<tr>
+                            <th class="pepile">出现次数</th>
+                            <th colspan="3"></th>
+                            <th class="pepile">` + showcount_da + `</th>
+                            <th class="pepile">` + showcount_xiao + `</th>
+                            <th></th>
+                            <th class="pepile">` + showcount_qian_da + `</th>
+                            <th class="pepile">` + showcount_qian_xiao + `</th>
+                            <th></th>
+                            <th class="pepile">` + showcount_bai_da + `</th>
+                            <th class="pepile">` + showcount_bai_xiao + `</th>
+                        </tr>
+                        <tr>
+                            <th class="green">最大连出</th>
+                            <th colspan="3"></th>
+                            <th class="green">` + Math.max(...zdyl1_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_xiao) + `</th>
+                            <th></th>
+                            <th class="green">` + Math.max(...zdyl2_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl2_xiao) + `</th>
+                            <th></th>
+                            <th class="green">` + Math.max(...zdyl3_da) + `</th>
+                            <th class="green">` + Math.max(...zdyl3_xiao) + `</th>
+                        </tr>
+                        <tr>
+                            <th class="zise">最大遗漏</th>
+                            <th colspan="3"></th>
+                            <th class="zise">` + Math.max(...zdyl1_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl1_da) + `</th>
+                            <th></th>
+                            <th class="zise">` + Math.max(...zdyl2_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl2_da) + `</th>
+                            <th></th>
+                            <th class="zise">` + Math.max(...zdyl3_xiao) + `</th>
+                            <th class="zise">` + Math.max(...zdyl3_da) + `</th>
+                        </tr>
+                        `;
+            return footer;
+
+        }
+        //单双渲染
+        function renderDanShuang(data, type, num) {
+            // console.log(number_data);
+            let str = '',
+                p1, p2, p3,
+                j = 0,
+                j_qian = 0,
+                j_bai = 0,
+                da1,
+                da2,
+                daclass,
+                xiaoclass,
+                da1_qian,
+                da2_qian,
+                daclass_qian,
+                xiaoclass_qian,
+                da1_bai,
+                da2_bai,
+                daclass_bai,
+                xiaoclass_bai,
+                showcount_da = 0,
+                showcount_xiao = 0,
+                showcount_qian_da = 0,
+                showcount_qian_xiao = 0,
+                showcount_bai_da = 0,
+                showcount_bai_xiao = 0,
+                zdyl1_da = [], //最大遗漏位置1大
+                zdyl1_xiao = [], //最大遗漏位置1小
+                zdyl2_da = [], //最大遗漏位置2大
+                zdyl2_xiao = [], //最大遗漏位置2小
+                zdyl3_da = [], //最大遗漏位置3大
+                zdyl3_xiao = []; //最大遗漏位置3小
+            str_arr = [];
+            for (var i = 0; i < data.length; i++) {
+                let element = data[i];
+                if (type === '0') {
+                    p1 = element['data'][0];
+                    p2 = element['data'][1];
+                    p3 = element['data'][2];
+                } else {
+                    p1 = element['data'][2];
+                    p2 = element['data'][3];
+                    p3 = element['data'][4];
+                }
+                if (Number(p1) % 2 === 1) {
+                    if (da2 === '双') {
+                        zdyl1_xiao.push(j);
+                        j = 0;
+                    }
+                    da2 = ++j;
+                    da1 = '单';
+                    daclass = 'td_da';
+                    xiaoclass = '';
+                    ++showcount_da;
+                } else {
+                    if (da1 === '单') {
+                        zdyl1_da.push(j)
+                        j = 0;
+                    }
+                    da1 = ++j;
+                    da2 = '双';
+                    daclass = '';
+                    xiaoclass = 'td_xiao';
+                    ++showcount_xiao;
+                }
+                if (Number(p2) % 2 === 1) {
+                    if (da2_qian === '双') {
+                        zdyl2_xiao.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = '单';
+                    daclass_qian = 'td_da';
+                    xiaoclass_qian = '';
+                    da2_qian = ++j_qian;
+                    ++showcount_qian_da;
+                } else {
+                    if (da1_qian === '单') {
+                        zdyl2_da.push(j_qian);
+                        j_qian = 0;
+                    }
+                    da1_qian = ++j_qian;
+                    da2_qian = '双';
+                    daclass_qian = '';
+                    xiaoclass_qian = 'td_xiao';
+                    ++showcount_qian_xiao;
+                }
+                if (Number(p3) % 2 === 1) {
+                    if (da2_bai === '双') {
+                        zdyl3_xiao.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = '单';
+                    daclass_bai = 'td_da';
+                    xiaoclass_bai = '';
+                    da2_bai = ++j_bai;
+                    ++showcount_bai_da;
+                } else {
+                    if (da1_bai === '单') {
+                        zdyl3_da.push(j_bai);
+                        j_bai = 0;
+                    }
+                    da1_bai = ++j_bai;
+                    da2_bai = '双';
+                    daclass_bai = '';
+                    xiaoclass_bai = 'td_xiao';
+                    ++showcount_bai_xiao;
+                }
+                str = `<tr>
+                            <th>` + element['issue'] + `</th>
+                            <th><span class="tip">` + p1 + `</span></th>
+                            <th><span class="tip">` + p2 + `</span></th>
+                            <th><span class="tip">` + p3 + `</span></th>
+                            <th class=` + daclass + `><span>` + da1 + `</span></th>
+                            <th class=` + xiaoclass + `><span>` + da2 + `</span></th>
+                            <th><span></span></th>
+                            <th class=` + daclass_qian + `><span>` + da1_qian + `</span></th>
+                            <th class=` + xiaoclass_qian + `><span>` + da2_qian + `</span></th>
+                            <th><span></span></th>
+                            <th class=` + daclass_bai + `><span>` + da1_bai + `</span></th>
+                            <th class=` + xiaoclass_bai + `><span>` + da2_bai + `</span></th>
+                        </tr>
+                        `;
+                str_arr.push(str);
+            }
+            let footer = renderDanShuangFooter(data, type, num);
+            document.getElementById('danshuan-list-data').innerHTML = str_arr.slice(-num).join('') + footer;
+        }
+
+        //龙虎footer
+        function renderLongHuFooter(data, type, num) {
+            let str = '',
+                temp_data = data.slice(-num),
+                j = 0,
+                k = 0,
+                w = 0,
+                j1 = 0,
+                k1 = 0,
+                w1 = 0,
+                p1, p2, p3, p4,
+                long1,
+                he1,
+                hu1,
+                long2,
+                he2,
+                hu2,
+                showcount_long1 = 0,
+                showcount_he1 = 0,
+                showcount_hu1 = 0,
+                showcount_long2 = 0,
+                showcount_he2 = 0,
+                showcount_hu2 = 0,
+                zdyl1_long1 = [], //最大遗漏位置1龙
+                zdyl1_hu1 = [], //最大遗漏位置2虎
+                zdyl1_he1 = [], //最大遗漏位置3和
+                zdyl1_long2 = [], //最大遗漏位置1龙
+                zdyl1_hu2 = [], //最大遗漏位置2虎
+                zdyl1_he2 = [], //最大遗漏位置3和
+                str_arr = [];
+            for (var i = 0; i < temp_data.length; i++) {
+                let element = temp_data[i];
+                switch (type) {
+                    // 万千 根据万位、千位号码数值比大小，万位号码大于千位号码为龙，万位号码小于千位号码为虎，号码相同则为和。所选形态与开奖号码形态一致，即为中奖。
+                    case '0':
+                        p1 = element['data'][0]; //万
+                        p2 = element['data'][1]; //千
+                        p3 = element['data'][0]; //万
+                        p4 = element['data'][2]; //百
+                        break;
+                    case '1':
+                        p1 = element['data'][0]; //万
+                        p2 = element['data'][3]; //十
+                        p3 = element['data'][0]; //万
+                        p4 = element['data'][4]; //个
+                        break;
+                    case '2':
+                        p1 = element['data'][1]; //千
+                        p2 = element['data'][2]; //百
+                        p3 = element['data'][1]; //千
+                        p4 = element['data'][3]; //十
+                        break;
+                    case '3':
+                        p1 = element['data'][1]; //千
+                        p2 = element['data'][4]; //个
+                        p3 = element['data'][2]; //百
+                        p4 = element['data'][3]; //十
+                        break;
+                    case '3':
+                        p1 = element['data'][2]; //百
+                        p2 = element['data'][4]; //个
+                        p3 = element['data'][3]; //十
+                        p4 = element['data'][4]; //个
+                        break;
+                }
+                if (p1 > p2) {
+                    if (hu1 === '虎') {
+                        zdyl1_hu1.push(j);
+                        j = 0;
+                    }
+                    if (he1 === '和') {
+                        zdyl1_he1.push(k);
+                        k = 0;
+                    }
+                    long1 = '龙';
+                    hu1 = ++j;
+                    he1 = ++k;
+                    ++showcount_long1;
+                }
+                if (p1 === p2) {
+                    if (hu1 === '虎') {
+                        zdyl1_hu1.push(j);
+                        j = 0;
+                    }
+                    if (long1 === '龙') {
+                        zdyl1_long1.push(w);
+                        w = 0;
+                    }
+                    he1 = '和';
+                    hu1 = ++j;
+                    long1 = ++w;
+                    ++showcount_he1;
+                }
+                if (p1 < p2) {
+                    if (he1 === '和') {
+                        zdyl1_he1.push(k);
+                        k = 0;
+                    }
+                    if (long1 === '龙') {
+                        zdyl1_long1.push(w);
+                        w = 0;
+                    }
+                    hu1 = '虎';
+                    he1 = ++k;
+                    long1 = ++w;
+                    ++showcount_hu1;
+                }
+                if (p3 > p4) {
+                    if (hu2 === '虎') {
+                        zdyl1_hu2.push(j1);
+                        j1 = 0;
+                    }
+                    if (he2 === '和') {
+                        zdyl1_he2.push(k1);
+                        k1 = 0;
+                    }
+                    long2 = '龙';
+                    hu2 = ++j1;
+                    he2 = ++k1;
+                    ++showcount_long2;
+                }
+                if (p3 === p4) {
+                    if (hu2 === '虎') {
+                        zdyl1_hu2.push(j1);
+                        j1 = 0;
+                    }
+                    if (long2 === '龙') {
+                        zdyl1_long2.push(w1);
+                        w1 = 0;
+                    }
+                    he2 = '和';
+                    hu2 = ++j1;
+                    long2 = ++w1;
+                    ++showcount_he2;
+                }
+                if (p3 < p4) {
+                    if (he2 === '和') {
+                        zdyl1_he2.push(k1);
+                        k1 = 0;
+                    }
+                    if (long2 === '龙') {
+                        zdyl1_long2.push(w1);
+                        w1 = 0;
+                    }
+                    hu2 = '虎';
+                    he2 = ++k1;
+                    long2 = ++w1;
+                    ++showcount_hu2;
+                }
+            }
+
+            let footer = `<tr>
+                            <th class="pepile">出现次数</th>
+                            <th colspan="2"></th>
+                            <th class="pepile">` + showcount_long1 + `</th>
+                            <th class="pepile">` + showcount_he1 + `</th>
+                            <th class="pepile">` + showcount_hu1 + `</th>
+                            <th colspan="2"></th>
+                            <th class="pepile">` + showcount_long2 + `</th>
+                            <th class="pepile">` + showcount_he2 + `</th>
+                            <th class="pepile">` + showcount_hu2 + `</th>
+                        </tr>
+                        
+                        `;
+            return footer;
+
+        }
+
+        //龙虎渲染
+        function renderLongHu(data, type, num) {
+            let str = '',
+                j = 0,
+                k = 0,
+                w = 0,
+                j1 = 0,
+                k1 = 0,
+                w1 = 0,
+                p1, p2, p3, p4,
+                long1,
+                he1,
+                hu1,
+                long2,
+                he2,
+                hu2,
+                longclass1,
+                huclass1,
+                heclass1,
+                longclass2,
+                huclass2,
+                heclass2,
+                showcount_long1 = 0,
+                showcount_he1 = 0,
+                showcount_hu1 = 0,
+                showcount_long2 = 0,
+                showcount_he2 = 0,
+                showcount_hu2 = 0,
+                zdyl1_long1 = [], //最大遗漏位置1龙
+                zdyl1_hu1 = [], //最大遗漏位置2虎
+                zdyl1_he1 = [], //最大遗漏位置3和
+                zdyl1_long2 = [], //最大遗漏位置1龙
+                zdyl1_hu2 = [], //最大遗漏位置2虎
+                zdyl1_he2 = [], //最大遗漏位置3和
+                str_arr = [],
+                lian = [],
+                lou = [];
+            for (var i = 0; i < data.length; i++) {
+                let element = data[i];
+                switch (type) {
+                    // 万千 根据万位、千位号码数值比大小，万位号码大于千位号码为龙，万位号码小于千位号码为虎，号码相同则为和。所选形态与开奖号码形态一致，即为中奖。
+                    case '0':
+                        p1 = element['data'][0]; //万
+                        p2 = element['data'][1]; //千
+                        p3 = element['data'][2]; //百
+
+                        break;
+                    case '1':
+                        p1 = element['data'][0]; //万
+                        p2 = element['data'][3]; //十
+                        p3 = element['data'][4]; //个
+                        break;
+                    case '2':
+                        p1 = element['data'][1]; //千
+                        p2 = element['data'][2]; //百
+                        p3 = element['data'][3]; //十
+                        break;
+                    case '3':
+                        p1 = element['data'][1]; //千
+                        p2 = element['data'][4]; //个
+                        p3 = element['data'][2]; //百
+                        p3 = element['data'][3]; //十
+                        break;
+                    case '3':
+                        p1 = element['data'][2]; //百
+                        p2 = element['data'][3]; //十
+                        p3 = element['data'][4]; //个
+                        break;
+                }
+                if (p1 > p2) {
+                    if (hu1 === '虎') {
+                        zdyl1_hu1.push(j);
+                        j = 0;
+                    }
+                    if (he1 === '和') {
+                        zdyl1_he1.push(k);
+                        k = 0;
+                    }
+                    long1 = '龙';
+                    longclass1 = "long_active lhactive";
+                    heclass1 = "";
+                    huclass1 = "";
+                    hu1 = ++j;
+                    he1 = ++k;
+                    ++showcount_long1;
+                }
+                if (p1 === p2) {
+                    if (hu1 === '虎') {
+                        zdyl1_hu1.push(j);
+                        j = 0;
+                    }
+                    if (long1 === '龙') {
+                        zdyl1_long1.push(w);
+                        w = 0;
+                    }
+                    he1 = '和';
+                    heclass1 = "he_active lhactive";
+                    longclass1 = "";
+                    huclass1 = "";
+                    hu1 = ++j;
+                    long1 = ++w;
+                    ++showcount_he1;
+                }
+                if (p1 < p2) {
+                    if (he1 === '和') {
+                        zdyl1_he1.push(k);
+                        k = 0;
+                    }
+                    if (long1 === '龙') {
+                        zdyl1_long1.push(w);
+                        w = 0;
+                    }
+                    hu1 = '虎';
+                    huclass1 = "hu_active lhactive";
+                    longclass1 = "";
+                    heclass1 = "";
+                    he1 = ++k;
+                    long1 = ++w;
+                    ++showcount_hu1;
+                }
+                if (p1 > p3) {
+                    if (hu2 === '虎') {
+                        zdyl1_hu2.push(j1);
+                        j1 = 0;
+                    }
+                    if (he2 === '和') {
+                        zdyl1_he2.push(k1);
+                        k1 = 0;
+                    }
+                    long2 = '龙';
+                    longclass2 = "long_active lhactive";
+                    heclass2 = "";
+                    huclass2 = "";
+                    hu2 = ++j1;
+                    he2 = ++k1;
+                    ++showcount_long2;
+                }
+                if (p1 === p3) {
+                    if (hu2 === '虎') {
+                        zdyl1_hu2.push(j1);
+                        j1 = 0;
+                    }
+                    if (long2 === '龙') {
+                        zdyl1_long2.push(w1);
+                        w1 = 0;
+                    }
+                    he2 = '和';
+                    heclass2 = "he_active lhactive";
+                    longclass2 = "";
+                    huclass2 = "";
+                    hu2 = ++j1;
+                    long2 = ++w1;
+                    ++showcount_he2;
+                }
+                if (p1 < p3) {
+                    if (he2 === '和') {
+                        zdyl1_he2.push(k1);
+                        k1 = 0;
+                    }
+                    if (long2 === '龙') {
+                        zdyl1_long2.push(w1);
+                        w1 = 0;
+                    }
+                    hu2 = '虎';
+                    huclass2 = "hu_active lhactive";
+                    longclass2 = "";
+                    heclass2 = "";
+                    he2 = ++k1;
+                    long2 = ++w1;
+                    ++showcount_hu2;
+                }
+
+                str = `<tr>
+                            <th>` + element['issue'].slice(-4) + `期</th>
+                            <th><span class="tip">` + p1 + `</span></th>
+                            <th><span class="tip">` + p2 + `</span></th>
+                            <th class="longhu_item0 ` + longclass1 + `"><span>` + long1 + `</span></th>
+                            <th class="longhu_item1 ` + heclass1 + `"><span>` + he1 + `</span></th>
+                            <th class="longhu_item2 ` + huclass1 + `"><span>` + hu1 + `</span></th>
+                            <th><span class="tip">` + p1 + `</span></th>
+                            <th><span class="tip">` + p3 + `</span></th>
+                            <th class="longhu_item3 ` + longclass2 + `"><span>` + long2 + `</span></th>
+                            <th class="longhu_item4 ` + heclass2 + `"><span>` + he2 + `</span></th>
+                            <th class="longhu_item5 ` + huclass2 + `"><span>` + hu2 + `</span></th>
+                        </tr>
+                        `;
+                str_arr.push(str);
+            }
+
+            let footer = renderLongHuFooter(data, type, num);
+
+            document.getElementById('longhu-list-data').innerHTML = str_arr.slice(-num).join('') + footer;
+            for (var i = 0; i < 6; i++) {
+                let el = $('.longhu_item' + i),
+                    arr = [],
+                    arr_lian = [],
+                    cc = 1;
+                $.each(el, function(index, val) {
+                    /* iterate through array or object */
+                    let prev = $(el.get(index)).hasClass('lhactive');
+                    let next = $(el.get(index + 1)).hasClass('lhactive');
+                    if (prev === true && next === true) {
+                        ++cc;
+                        arr_lian.push(cc);
+                    } else {
+                        cc = 1;
+                        arr_lian.push(cc);
+                    }
+                    if ($(val).hasClass('lhactive')) {
+                        arr.push(0);
+                    } else {
+                        arr.push(parseInt($(val).find('span').text()));
+                    }
+
+                });
+                // console.log(arr_lian);
+                arr = [...new Set(arr)]; //数组去重
+
+                arr_lian = [...new Set(arr_lian)]; //数组去重
+                console.log(arr_lian);
+                lou.push(Math.max(...arr));
+                lian.push(Math.max(...arr_lian));
+            }
+            // console.log(lian);
+            let s = `<tr>
+                            <th class="green">最大连出</th>
+                            <th class="green"></th>
+                            <th class="green"></th>
+                            <th class="green">` + lian[0] + `</th>
+                            <th class="green">` + lian[1] + `</th>
+                            <th class="green">` + lian[2] + `</th>
+                            <th class="green"></th>
+                            <th class="green"></th>
+                            <th class="green">` + lian[3] + `</th>
+                            <th class="green">` + lian[4] + `</th>
+                            <th class="green">` + lian[5] + `</th>
+                        </tr>
+                        <tr>
+                            <th class="green">最大遗漏</th>
+                            <th colspan="2"></th>
+                            <th class="green">` + Math.max(...zdyl1_long1) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_he1) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_hu1) + `</th>
+                            <th colspan="2"></th>
+                            <th class="green">` + Math.max(...zdyl1_long2) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_he2) + `</th>
+                            <th class="green">` + Math.max(...zdyl1_hu2) + `</th>
+                        </tr>
+
+                        `;
+            $('#longhu-list-data').append(s);
+        }
+
+        //多号渲染
+        function renderDuoHaoFooter(data, type, num) {
+            let str = '',
+                element,
+                temp_data = data.slice(-num),
+                c = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //出现次数
+                len = temp_data.length;
+            for (var i = 0; i < len; i++) {
+                element = temp_data[i];
+                let p1 = 0,
+                    p2 = 0;
+                for (var j = 0; j < 10; j++) {
+                    if (type === '0') {
+                        p1 = parseInt(element['data'][3]);
+                        p2 = parseInt(element['data'][4]);
+                    } else {
+                        p1 = parseInt(element['data'][0]);
+                        p2 = parseInt(element['data'][1]);
+                    }
+                    switch (j) {
+                        case p1:
+                            ++c[j];
+                            break;
+                        case p2:
+                            ++c[j];
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            let footer = `<tr>
+                            <th class="pepile">出现次数</th>
+                            <th class="pepile">` + c[0] + `</th>
+                            <th class="pepile">` + c[1] + `</th>
+                            <th class="pepile">` + c[2] + `</th>
+                            <th class="pepile">` + c[3] + `</th>
+                            <th class="pepile">` + c[4] + `</th>
+                            <th class="pepile">` + c[5] + `</th>
+                            <th class="pepile">` + c[6] + `</th>
+                            <th class="pepile">` + c[7] + `</th>
+                            <th class="pepile">` + c[8] + `</th>
+                            <th class="pepile">` + c[9] + `</th>
+                        </tr>
+                        `;
+            return footer;
+        }
+
+        function renderDuoHao(data, type, num) {
+            let str = '',
+                element,
+                count = 0,
+                m = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                c = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], //出现次数
+                d = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                len = data.length,
+                lian_active = [],
+                max = [],
+                lian = [],
+                lou = [],
+                str_arr = [];
+
+            for (var i = 0; i < len; i++) {
+                element = data[i];
+                let p1 = 0,
+                    p2 = 0,
+                    s = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],
+                    ss = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    sss = [],
+                    count = 0;
+                for (var j = 0; j < 10; j++) {
+                    if (type === '0') {
+                        p1 = parseInt(element['data'][3]);
+                        p2 = parseInt(element['data'][4]);
+                    } else {
+                        p1 = parseInt(element['data'][0]);
+                        p2 = parseInt(element['data'][1]);
+                    }
+                    ss[j] = s[j] = ++m[j];
+                    switch (j) {
+                        case p1:
+                            ss[p1] = j;
+                            s[p1] = "<span class='ball_active'>" + j + "</span>";
+                            m[j] = 0;
+                            ++c[j];
+                            break;
+                        case p2:
+                            ss[p2] = j;
+                            s[p2] = "<span class='ball_active'>" + j + "</span>";
+                            m[j] = 0;
+                            ++c[j];
+                        default:
+                            break;
+                    }
+                    if (p1 === p2 && p1 === j) {
+                        s[j] = "<span class='ball_active'>" + j + "<strong class='strong_on'>2<strong></span>";
+                    }
+
+                }
+                max.push(ss);
+                str = `
+                    <tr>
+                        <th>` + element['issue'].slice(-4) + `期</th>
+                        <th class="duohao_item0">` + s[0] + `</th>
+                        <th class="duohao_item1">` + s[1] + `</th>
+                        <th class="duohao_item2">` + s[2] + `</th>
+                        <th class="duohao_item3">` + s[3] + `</th>
+                        <th class="duohao_item4">` + s[4] + `</th>
+                        <th class="duohao_item5">` + s[5] + `</th>
+                        <th class="duohao_item6">` + s[6] + `</th>
+                        <th class="duohao_item7">` + s[7] + `</th>
+                        <th class="duohao_item8">` + s[8] + `</th>
+                        <th class="duohao_item9">` + s[9] + `</th>
+                    </tr>
+                    `;
+                str_arr.push(str);
+            }
+            let footer = renderDuoHaoFooter(data, type, num);
+            document.getElementById('duohao-list-data').innerHTML = str_arr.slice(-num).join('') + footer;
+            for (var i = 0; i < 10; i++) {
+                let el = $('.duohao_item' + i),
+                    arr = [],
+                    arr_lian = [],
+                    cc = 1;
+                $.each(el, function(index, val) {
+                    /* iterate through array or object */
+                    let prev = $(el.get(index)).find('span').length;
+                    let next = $(el.get(index + 1)).find('span').length;
+                    if (prev === 1 && next === 1) {
+                        ++cc;
+                        arr_lian.push(cc);
+                    } else {
+                        // c = 1;
+                        cc = 1;
+                        arr_lian.push(cc);
+                    }
+                    if ($(val).find('span').length) {
+                        arr.push(0);
+                    } else {
+                        arr.push(parseInt($(val).text()));
+                    }
+
+                });
+                // console.log(arr_lian);
+                arr = [...new Set(arr)]; //数组去重
+                arr_lian = [...new Set(arr_lian)]; //数组去重
+                lou.push(Math.max(...arr));
+                lian.push(Math.max(...arr_lian))
+            }
+
+
+            let s = `<tr>
+                            <th class="green">最大连出</th>
+                            <th class="green">` + lian[0] + `</th>
+                            <th class="green">` + lian[1] + `</th>
+                            <th class="green">` + lian[2] + `</th>
+                            <th class="green">` + lian[3] + `</th>
+                            <th class="green">` + lian[4] + `</th>
+                            <th class="green">` + lian[5] + `</th>
+                            <th class="green">` + lian[6] + `</th>
+                            <th class="green">` + lian[7] + `</th>
+                            <th class="green">` + lian[8] + `</th>
+                            <th class="green">` + lian[9] + `</th>
+                        </tr>
+                        <tr>
+                            <th class="green">最大遗漏</th>
+                            <th class="green">` + lou[0] + `</th>
+                            <th class="green">` + lou[1] + `</th>
+                            <th class="green">` + lou[2] + `</th>
+                            <th class="green">` + lou[3] + `</th>
+                            <th class="green">` + lou[4] + `</th>
+                            <th class="green">` + lou[5] + `</th>
+                            <th class="green">` + lou[6] + `</th>
+                            <th class="green">` + lou[7] + `</th>
+                            <th class="green">` + lou[8] + `</th>
+                            <th class="green">` + lou[9] + `</th>
+                        </tr>
+
+                        `;
+            $('#duohao-list-data').append(s)
+
+        }
+
+        //单号显示数据
+        let showData = function(data) {
+            let weizhi = window.localStorage.getItem('weizhi_' + lotteryId) || $('#weizhi').find('.active').attr('data-wei');
+            let qishu = window.localStorage.getItem('qishu_' + lotteryId) || parseInt($('#qishu').find('.active').attr('data-qi'));
+            let list = data.data_list.wanData;
+            let count = data.count_list.wanNumbers;
+            let yiCount = data.yi_count.wanData;
+            switch (weizhi) {
+                case 'wan':
+                    list = data.data_list.wanData;
+                    count = data.count_list.wanNumbers;
+                    yiCount = data.yi_count.wanData;
+                    break;
+                case 'qian':
+                    list = data.data_list.qianData;
+                    count = data.count_list.qianNumbers;
+                    yiCount = data.yi_count.qianData;
+                    break;
+                case 'bai':
+                    list = data.data_list.baiData;
+                    count = data.count_list.baiNumbers;
+                    yiCount = data.yi_count.baiData;
+                    break;
+                case 'shi':
+                    list = data.data_list.shiData;
+                    count = data.count_list.shiNumbers;
+                    yiCount = data.yi_count.shiData;
+                    break;
+                case 'ge':
+                    list = data.data_list.geData;
+                    count = data.count_list.geNumbers;
+                    yiCount = data.yi_count.geData;
+                    break;
+            }
+            list = list[qishu];
+            count = count[qishu];
+            yiCount = yiCount[qishu];
+            let listTable = '';
+            for (let x in list) {
+                listTable += "<tr><th>" + list[x].issue + "</th>";
+                listTable += "<th><span class=\"tip\">" + list[x].win + "</span></th>";
+                let dlist = list[x].list;
+                for (let y in dlist) {
+                    if (dlist[y] === false) {
+                        listTable += "<th><span class=\"hotSpan\">" + list[x].win + "</span></th>";
+                    } else {
+                        listTable += "<th><span>" + dlist[y] + "</span></th>";
+                    }
+                }
+                listTable += '</tr>';
+            }
+            $('#list-data').html(listTable);
+
+            let timesTr = '<tr><th>总次数</th>';
+            let aveTr = '<tr><th>平均遗漏</th>';
+            let lianTr = '<tr><th>最大连出</th>';
+            let yiTr = '<tr><th>最大遗漏</th>';
+            for (let i = 0; i < 10; i++) {
+                timesTr += '<th>' + count.total_times[i] + '</th>';
+                aveTr += '<th>' + count.ave_yi[i] + '</th>';
+                lianTr += '<th>' + count.max_lian[i] + '</th>';
+                yiTr += '<th>' + yiCount.max_yi[i] + '</th>';
+            }
+            timesTr += '</tr>';
+            aveTr += '</tr>';
+            lianTr += '</tr>';
+            yiTr += '</tr>';
+            let countTable = (timesTr + aveTr + lianTr + yiTr);
+            $('#count-data').html(countTable);
+
+            //canvas 连线，后续优化封装
+            $('canvas').remove();
+            var tmpDom = document.createDocumentFragment();
+            JoinLine.tmpDom = tmpDom;
+            var h = $('.hotSpan');
+            var tmpCanvas = JoinLine.prototype.join(h, true);
+            var tableid = 'chartLinediv';
+            document.getElementById(tableid).parentNode.appendChild(tmpCanvas);
+        };
+
+        function resetLayout() {
+            $('#waitBox').addClass('hidden');
+            $('#waitBox_ds').addClass('hidden');
+            $('#waitBox_dx').addClass('hidden');
+            $('#waitBox_duohao').addClass('hidden');
+            $('#waitBox_longhu').addClass('hidden');
+        }
+
+        $('.p_btn').on('click', function(e) {
+            var desc = $(this).data('desc'),
+                type = $(this).data('type').toString();
+            $('.p_btn').removeClass('active');
+            $(this).addClass('active');
+            let num = $('#qishu').find('.active').data('qi');
+            document.getElementById('zoushi-desc').innerText = desc;
+            document.getElementById('zoushi-desc').setAttribute('type', type);
+
+            //存入缓存
+            window.localStorage.setItem('play_type_' + lotteryId, type);
+            window.localStorage.setItem('zoushi-desc-' + lotteryId, desc);
+            //大小走势
+            if (type === '2') {
+                $('canvas').hide();
+                resetLayout();
+                $('#waitBox_dx').removeClass('hidden');
+                let ptype = $(this).data('ptype').toString();
+                document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                window.localStorage.setItem('ptype_' + lotteryId, ptype);
+                if (ptype === '0') {
+                    document.getElementById('dxwqb').classList.remove('hidden');
+                    document.getElementById('dxbsg').classList.add('hidden');
+                } else {
+                    document.getElementById('dxbsg').classList.remove('hidden');
+                    document.getElementById('dxwqb').classList.add('hidden');
+                }
+                renderDaXiao(number_data, ptype, num);
+            }
+            //单双走势
+            if (type === '3') {
+                $('canvas').hide();
+                resetLayout();
+                $('#waitBox_ds').removeClass('hidden');
+                let ptype = $(this).data('ptype').toString();
+                document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                window.localStorage.setItem('ptype_' + lotteryId, ptype);
+                if (ptype === '0') {
+                    document.getElementById('dxwqb_ds').classList.remove('hidden');
+                    document.getElementById('dxbsg_ds').classList.add('hidden');
+                } else {
+                    document.getElementById('dxbsg_ds').classList.remove('hidden');
+                    document.getElementById('dxwqb_ds').classList.add('hidden');
+                }
+                renderDanShuang(number_data, ptype, num);
+            }
+            //单号走势
+            if (type === '0') {
+                $('canvas').show();
+                resetLayout();
+                $('#waitBox').removeClass('hidden');
+                let weizhi = $(this).data('wei');
+                window.localStorage.setItem('weizhi_' + lotteryId, weizhi);
+                showData(resultData);
+            }
+            //多号走势
+            if (type === '1') {
+                $('canvas').hide();
+                resetLayout();
+                $('#waitBox_duohao').removeClass('hidden');
+                let ptype = $(this).data('ptype').toString();
+                document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                window.localStorage.setItem('ptype_' + lotteryId, ptype);
+                renderDuoHao(number_data, ptype, num);
+            }
+            //龙虎
+            if (type === '4') {
+                $('canvas').hide();
+                resetLayout();
+                $('#waitBox_longhu').removeClass('hidden');
+                let ptype = $(this).data('ptype').toString();
+                let name_array = $(this).data('name').split(',');
+                for (var i = 0; i < 4; i++) {
+                    $('#lh_item_' + i).text(name_array[i]);
+                }
+                document.getElementById('zoushi-desc').setAttribute('ptype', ptype);
+                window.localStorage.setItem('ptype_' + lotteryId, ptype);
+                window.localStorage.setItem('lh_name' + lotteryId, $(this).data('name'));
+                renderLongHu(number_data, ptype, num);
+            }
+            $('#modal').addClass('hidden');
+        });
+
+        $('#qishu > a').bind('click', function() {
+            if (!resultData) {
+                console.log('数据还未加载完毕，点击无效');
+                return;
+            }
+            $('#qishu > a').removeClass('active');
+            $(this).addClass('active');
+            let num = $(this).data('qi');
+            window.localStorage.setItem('qishu_' + lotteryId, num);
+            //判断类型
+            let type = document.getElementById('zoushi-desc').getAttribute('type');
+            switch (type) {
+                case '0': //单号
+                    showData(resultData);
+                    break;
+                case '1': //多号
+                    let ptype1 = document.getElementById('zoushi-desc').getAttribute('ptype');
+                    renderDuoHao(number_data, ptype1, num);
+                    break;
+                case '2':
+                    // 大小走势
+                    let ptype2 = document.getElementById('zoushi-desc').getAttribute('ptype');
+                    renderDaXiao(number_data, ptype2, num);
+                    break;
+                case '3':
+                    // 单双走势
+                    let ptype3 = document.getElementById('zoushi-desc').getAttribute('ptype');
+                    renderDanShuang(number_data, ptype3, num);
+                    break;
+                case '4':
+                    // 龙虎走势
+                    let ptype4 = document.getElementById('zoushi-desc').getAttribute('ptype');
+                    renderLongHu(number_data, ptype4, num);
+                    break;
+            }
+
+        });
+
+    });
+    </script>
+</body>
+
+</html>

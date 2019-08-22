@@ -1,0 +1,1355 @@
+.gheader{
+  height: 95px;
+  width: 100%;
+  margin-top: 25px;
+  background: rgba(0, 0, 0, 0.25);
+
+  .left{
+    display: inline-block;
+
+    .logo{
+      margin: 27px 20px 28px 35px;
+      width: 120px;
+      display: inline-block;
+      text-align: center;
+
+      img{
+        height: 40px;
+      }
+    }
+
+    .time{
+      display: inline-block;
+      color: #fff;
+      font-size: 13px;
+      margin: 26px 10px 27px 10px;
+      vertical-align: top;
+      width: 130px;
+
+      .nubmer{
+        line-height: 21px;
+
+        span{
+          color: #ffcb01;
+          padding: 0 3px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .countdown{
+      display: inline-block;
+      margin: 26px 25px 27px 0;
+      vertical-align: top;
+
+      div{
+        display: inline-block;
+
+        .uk-countdown-number{
+          span{
+            background: rgba(0, 0, 0, 0.35);
+            padding: 8px 6px;
+            margin: 0 1px;
+            font-size: 26px;
+            border-radius: 5px;
+            color: #fff;
+          }
+        }
+      }
+      .uk-countdown-separator{
+        font-size: 28px;
+        color: #fff;
+      }
+    }
+  }
+
+  .right{
+    display: inline-block;
+    vertical-align: top;
+
+    .time{
+      display: inline-block;
+      color: #fff;
+      font-size: 13px;
+      margin: 26px 10px 27px 10px;
+      vertical-align: top;
+      width: 130px;
+
+      .nubmer{
+        line-height: 21px;
+
+        span{
+          color: #ffcb01;
+          padding: 0 3px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .kj{
+      display: inline-block;
+      width: 424px;
+      text-align: center;
+
+      .ssc{
+        margin: 25px 0;
+
+        .numbox{
+          height: 44px;
+
+          span{
+            width: 44px;
+            height: 44px;
+            display: inline-block;
+            margin: 0 10px;
+            filter: drop-shadow(0px 15px 12px rgba(0,0,0,0.4));
+          }
+
+          //时时彩系列开奖球
+
+          .ball0{
+            background: url("../../assets/img/lottery/ball0.png");
+            background-size: cover;
+          }
+
+          .ball1{
+            background: url("../../assets/img/lottery/ball1.png");
+            background-size: cover;
+          }
+
+          .ball2{
+            background: url("../../assets/img/lottery/ball2.png");
+            background-size: cover;
+          }
+
+          .ball3{
+            background: url("../../assets/img/lottery/ball3.png");
+            background-size: cover;
+          }
+
+          .ball4{
+            background: url("../../assets/img/lottery/ball4.png");
+            background-size: cover;
+          }
+
+          .ball5{
+            background: url("../../assets/img/lottery/ball5.png");
+            background-size: cover;
+          }
+
+          .ball6{
+            background: url("../../assets/img/lottery/ball6.png");
+            background-size: cover;
+          }
+
+          .ball7{
+            background: url("../../assets/img/lottery/ball7.png");
+            background-size: cover;
+          }
+
+          .ball8{
+            background: url("../../assets/img/lottery/ball8.png");
+            background-size: cover;
+          }
+
+          .ball9{
+            background: url("../../assets/img/lottery/ball9.png");
+            background-size: cover;
+          }
+
+
+
+          //11选5系列开奖球
+
+
+          .ball01{
+            background: url("../../assets/img/lottery/ball01.png");
+            background-size: cover;
+          }
+
+          .ball02{
+            background: url("../../assets/img/lottery/ball02.png");
+            background-size: cover;
+          }
+
+          .ball03{
+            background: url("../../assets/img/lottery/ball03.png");
+            background-size: cover;
+          }
+
+          .ball04{
+            background: url("../../assets/img/lottery/ball04.png");
+            background-size: cover;
+          }
+
+          .ball05{
+            background: url("../../assets/img/lottery/ball05.png");
+            background-size: cover;
+          }
+
+          .ball06{
+            background: url("../../assets/img/lottery/ball06.png");
+            background-size: cover;
+          }
+
+          .ball07{
+            background: url("../../assets/img/lottery/ball07.png");
+            background-size: cover;
+          }
+
+          .ball08{
+            background: url("../../assets/img/lottery/ball08.png");
+            background-size: cover;
+          }
+
+          .ball09{
+            background: url("../../assets/img/lottery/ball09.png");
+            background-size: cover;
+          }
+
+          .ball10{
+            background: url("../../assets/img/lottery/ball10.png");
+            background-size: cover;
+          }
+
+          .ball11{
+            background: url("../../assets/img/lottery/ball11.png");
+            background-size: cover;
+          }
+
+          span:nth-child(1){
+            animation-delay: 0s;
+          }
+          span:nth-child(2){
+            animation-delay: 0.15s;
+          }
+          span:nth-child(3){
+            animation-delay: 0.3s;
+          }
+          span:nth-child(4){
+            animation-delay: 0.45s;
+          }
+          span:nth-child(5){
+            animation-delay: 0.6s;
+          }
+        }
+
+        .lottery-text{
+          margin: 7px 0 0;
+
+          span{
+            color: #fff;
+            width: 41px;
+            height: 21px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            text-align: center;
+            margin: 0 5px;
+            font-size: 13px;
+            line-height: 19px;
+          }
+        }
+      }
+
+      .pk10{
+        margin: 28px 0 29px;
+
+        span{
+          width: 34px;
+          background: #eee;
+          display: inline-block;
+          line-height: 38px;
+          font-size: 16px;
+          border-radius: 3px;
+          color: #fff;
+          margin: 0 2px;
+          font-weight: bold;
+        }
+
+        span:nth-child(1){
+          animation-delay: 0.0s;
+        }
+        span:nth-child(2){
+          animation-delay: 0.2s;
+        }
+        span:nth-child(3){
+          animation-delay: 0.4s;
+        }
+        span:nth-child(4){
+          animation-delay: 0.6s;
+        }
+        span:nth-child(5){
+          animation-delay: 0.8s;
+        }
+        span:nth-child(6){
+          animation-delay: 1s;
+        }
+        span:nth-child(7){
+          animation-delay: 1.2s;
+        }
+        span:nth-child(8){
+          animation-delay: 1.4s;
+        }
+        span:nth-child(9){
+          animation-delay: 1.6s;
+        }
+        span:nth-child(10){
+          animation-delay: 1.8s;
+        }
+
+        .nub1{
+          background: #ffcf00;
+        }
+
+        .nub2{
+          background: #0391dd;
+        }
+
+        .nub3{
+          background: #616161;
+        }
+
+        .nub4{
+          background: #ff7600;
+        }
+
+        .nub5{
+          background: #16e2e5;
+        }
+
+        .nub6{
+          background: #5234ff;
+        }
+
+        .nub7{
+          background: #898989;
+        }
+
+        .nub8{
+          background: #ff2600;
+        }
+
+        .nub9{
+          background: #9e4a43;
+        }
+
+        .nub10{
+          background: #07bf01;
+        }
+      }
+
+      .k3{
+        margin: 28px 0 29px;
+
+        span{
+          width: 38px;
+          height: 38px;
+          background-size: 100% !important;
+          vertical-align: middle;
+          display: inline-block;
+          margin: 0 10px;
+        }
+
+        span:nth-child(1){
+          animation-delay: 0s;
+        }
+        span:nth-child(2){
+          animation-delay: 0.2s;
+        }
+        span:nth-child(3){
+          animation-delay: 0.4s;
+        }
+
+        .nub1{
+          background: url("../../assets/img/lottery/dice1.png");
+        }
+
+        .nub2{
+          background: url("../../assets/img/lottery/dice2.png");
+        }
+
+        .nub3{
+          background: url("../../assets/img/lottery/dice3.png");
+        }
+
+        .nub4{
+          background: url("../../assets/img/lottery/dice4.png");
+        }
+
+        .nub5{
+          background: url("../../assets/img/lottery/dice5.png");
+        }
+
+        .nub6{
+          background: url("../../assets/img/lottery/dice6.png");
+        }
+
+      }
+    }
+
+    .btns{
+      display: inline-block;
+      vertical-align: top;
+      margin: 8px 20px 9px 10px;
+
+      button{
+        display: block;
+        margin: 6px 0;
+        height: 30px;
+        border-radius: 2px;
+        border: 0;
+        font-size: 12px;
+        color: #fff;
+        width: 92px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+
+.bet_box{
+  margin-top: 10px;
+  background: #fff;
+  user-select: none;
+  
+  .navplays{
+    background: #24abe7;
+    
+    ul{
+      display: inline-block;
+      padding-top: 4px;
+      width: 924px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+      li{
+        display: inline-block;
+        font-size: 13px;
+        padding: 13px 15px 14px;
+        color: #fff;
+        cursor: pointer;
+      }
+      li.active{
+        background: #fff;
+        color: #333;
+      }
+      li:hover{
+        background: #fff;
+        color: #333;
+      }
+    }
+
+    .bonus{
+      display: inline-block;
+      width: 276px;
+      float: right;
+      color: #fff;
+      font-size: 12px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      padding-left: 12px;
+
+      .left{
+        display: inline-block;
+        line-height: 50px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .right{
+        display: inline-block;
+        height: 50px;
+        float: right;
+
+        button{
+          display: block;
+          margin: 11px 20px 0 0;
+          height: 30px;
+          border-radius: 2px;
+          border: 0;
+          font-size: 12px;
+          width: 92px;
+          background: rgba(0, 0, 0, 0.25);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .mainbet{
+    position: relative;
+
+    .bet{
+      display: inline-block;
+      width: 924px;
+      border-right: 1px solid #eee;
+
+      .subplays{
+        padding: 18px 0 12px;
+        border-bottom: 1px solid #eee;
+
+        .line{
+          padding: 0 10px;
+
+          .title{
+            width: 52px;
+            display: inline-block;
+            text-align: right;
+            line-height: 24px;
+            vertical-align: top;
+            font-size: 13px;
+            color: #B9B9B9;
+          }
+
+          .btns{
+            display: inline-block;
+            width: 850px;
+            padding-left: 14px;
+
+            span{
+              display: inline-block;
+              padding: 0 10px;
+              line-height: 28px;
+              margin: 0 4px 6px 0;
+              border-radius: 3px;
+              font-size: 13px;
+              cursor: pointer;
+            }
+
+            span.active{
+              background: #24abe7;
+              color: #fff;
+
+            }
+          }
+        }
+      }
+
+      .form-group{
+
+        .selectArea{
+          padding: 6px 12px;
+
+          .position{
+            line-height: 46px;
+            display: inline-block;
+            padding: 0 15px 0 20px;
+          }
+
+          .lottery-num{
+            display: inline-block;
+
+            li{
+              display: inline-block;
+              width: 38px;
+              height: 38px;
+              line-height: 36px;
+              border-radius: 50%;
+              text-align: center;
+              margin-right: 8px;
+              font-size: 15px;
+              border: 1px solid #e1ddd2;
+              background: -webkit-gradient(linear,left bottom,left top,from(#eeedec),to(#fff));
+              background: linear-gradient(to top,#eeedec,#fff);
+              cursor: pointer;
+              -webkit-transition: all .2s ease-in;
+              -webkit-transform: scale(1);
+              -ms-transition: all .2s ease-in;
+              -ms-transform: scale(1);
+              -moz-transition: all .2s ease-in;
+              -moz-transform: scale(1);
+              transition: all .2s ease-in;
+              transform: scale(1);
+            }
+
+            .nub3{
+              border-radius: 4px;
+              width: 60px;
+              height: 36px;
+              line-height: 34px;
+            }
+
+            li.active{
+              background: #ff4040;
+              border-color: #ff4040;
+              color: #fff;
+            }
+          }
+
+          .quicktool{
+            display: inline-block;
+            float: right;
+            line-height: 46px;
+            margin-right: 10px;
+
+            li{
+              display: inline-block;
+              width: 28px;
+              height: 28px;
+              line-height: 28px;
+              text-align: center;
+              margin: 0 3px;
+              color: #666;
+              background: linear-gradient(to top, #eeedec, #fff);
+              border: 1px solid #e1ddd2;
+              font-size: 13px;
+              border-radius: 5px;
+              cursor: pointer;
+              -webkit-transition: all .2s ease-in;
+              -webkit-transform: scale(1);
+              -ms-transition: all .2s ease-in;
+              -ms-transform: scale(1);
+              -moz-transition: all .2s ease-in;
+              -moz-transform: scale(1);
+              transition: all .2s ease-in;
+              transform: scale(1);
+            }
+          }
+        }
+
+        .selectArea:nth-child(odd){
+          background: #f5f6f7;
+        }
+
+        .textArea{
+
+          .tips{
+            padding: 20px 15px;
+            p{
+              font-size: 12px;
+              display: inline-block;
+            }
+
+            button{
+              float: right;
+              background: #e3e7ea;
+              border: 0;
+
+              i{
+                font-size: 12px;
+              }
+
+              span{
+                font-size: 12px;
+                font-weight: normal;
+                margin-left: 4px;
+              }
+            }
+          }
+
+          textArea{
+            border-radius: 0;
+            border:0;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            padding: 10px 15px;
+            line-height: 22px;
+            background: #f7f8f9;
+          }
+        }
+
+      }
+    }
+
+    .trend{
+      position: absolute;
+      width: 275px;
+      right: 0;
+      overflow: hidden;
+      top: 0;
+
+      .trend_box{
+        height: 500px;
+        width: 290px;
+        overflow-y: scroll;
+
+        table{
+          width: 100%;
+
+          thead{
+            background: #f3f3f3;
+
+            th{
+              line-height: 44px;
+              font-size: 13px;
+              text-align: center;
+            }
+          }
+
+          tbody{
+            text-align: center;
+
+            tr{
+              border-bottom: 1px dashed #eee;
+
+              th{
+                font-size: 12px;
+                font-weight: normal;
+
+                span{
+                  width: 20px;
+                  height: 20px;
+                  line-height: 20px;
+                  border-radius: 4px;
+                  margin: 0 2px;
+                  display: inline-block;
+                }
+              }
+
+              th:first-child{
+                padding: 0 10px;
+              }
+            }
+            
+            .ssc{
+              line-height: 44px;
+
+              span{
+                background: #f1f2f7;
+              }
+            }
+
+            .ssc:first-child{
+              span{
+                border-radius: 4px;
+                background: #22abe7;
+                color: #fff;
+              }
+            }
+
+            .pk10{
+
+              .nub{
+                width: 170px;
+                padding: 0 20px;
+                margin: 10px 0;
+                display: block;
+              }
+
+              span{
+                font-size: 12px;
+                border-radius: 3px;
+                margin: 2px;
+              }
+
+              .nub1{
+                color: #ffcf00;
+                border: 1px solid rgba(255, 207, 0, 0.5);
+              }
+
+              .nub2{
+                color: #0391dd;
+                border:1px solid rgba(3, 145, 221, 0.5);
+              }
+
+              .nub3{
+                color: #4b4b4b;
+                border: 1px solid rgba(75, 75, 75, 0.5);
+              }
+
+              .nub4{
+                color: #ff7600;
+                border: 1px solid rgba(255, 118, 0, 0.5);
+              }
+
+              .nub5{
+                color: #16e2e5;
+                border: 1px solid rgba(22, 226, 229, 0.5);
+              }
+
+              .nub6{
+                color: #5234ff;
+                border: 1px solid rgba(82, 52, 255, 0.5);
+              }
+
+              .nub7{
+                color: #898989;
+                border: 1px solid rgba(191, 191, 191, 0.5);
+              }
+
+              .nub8{
+                color: #ff2600;
+                border: 1px solid rgba(255, 38, 0, 0.5);
+              }
+
+              .nub9{
+                color: #780a00;
+                border: 1px solid rgba(120, 10, 0, 0.5);
+              }
+
+              .nub10{
+                color: #07bf01;
+                border: 1px solid rgba(7, 191, 1, 0.5);
+              }
+            }
+
+            .k3{
+              .nub{
+                padding: 10px;
+              }
+
+              span{
+                width: 24px;
+                height: 24px;
+                background-size: 100%!important;
+                vertical-align: middle;
+              }
+
+              .nub1{
+                background: url("../../assets/img/lottery/dice1.png");
+              }
+
+              .nub2{
+                background: url("../../assets/img/lottery/dice2.png");
+              }
+
+              .nub3{
+                background: url("../../assets/img/lottery/dice3.png");
+              }
+
+              .nub4{
+                background: url("../../assets/img/lottery/dice4.png");
+              }
+
+              .nub5{
+                background: url("../../assets/img/lottery/dice5.png");
+              }
+
+              .nub6{
+                background: url("../../assets/img/lottery/dice6.png");
+              }
+            }
+          }
+        }
+      }
+    }
+    .trend:hover{
+      position: absolute;
+      z-index: 9999;
+      right: 0;
+      top: 0;
+      box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.05);
+
+      .trend_box{
+        height: 500px;
+        background: #fff;
+        overflow-y: scroll;
+      }
+    }
+  }
+}
+
+.toolarea{
+  padding: 25px 20px;
+  border-top: 1px solid #eee;
+  position: relative;
+  background: #fff;
+  text-align: center;
+
+  .amount{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    margin: 0 10px;
+
+    div{
+      display: inline-block;
+      line-height: 32px;
+
+      span{
+        color: #ff4444;
+        padding: 0 4px;
+      }
+    }
+  }
+
+  .moneyunit{
+    display: inline-block;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 10px;
+    vertical-align: top;
+
+    span{
+      width: 36px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      display: inline-block;
+      background: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      background: #f5f6f7;
+    }
+    span.active{
+      background: #ff4040;
+      color: #fff;
+    }
+
+    span:hover{
+      color: #ff4040;
+    }
+
+    span.active:hover{
+      color: #fff;
+    }
+  }
+
+  .multiple{
+    display: inline-block;
+    line-height: 32px;
+    font-size: 13px;
+    vertical-align: top;
+
+    span{
+      margin: 0 10px;
+    }
+
+    i{
+      font-size: 18px;
+      color: #b8bbbd;
+      vertical-align: sub;
+      cursor: pointer;
+    }
+    i:hover{
+      color: #355a72;
+    }
+
+    input{
+      height: 32px;
+      width: 50px;
+      margin: 0 8px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+  }
+
+  .slide{
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 10px 0 10px;
+
+    .ant-slider{
+      display: inline-block;
+      width: 240px;
+      margin: 0 10px;
+      vertical-align: middle;
+
+      .ant-slider-handle{
+        width: 16px;
+        height: 16px;
+        margin-top: -6px;
+      }
+    }
+
+    .jiangjin{
+      text-align: left;
+      width: 80px;
+    }
+
+    span{
+      line-height: 32px;
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+
+  .btns{
+    margin-top: 20px;
+
+    button{
+      height: 42px;
+    }
+    
+    .add_btn{
+      color: #fff;
+      border-color: #24abe7;
+      background: #24abe7;
+      border-bottom: 3px solid #1a90c3;
+      margin-right: 10px;
+    }
+
+    .add_btn:hover{
+      background: #20a5e0;
+    }
+
+    .btn{
+      background: #f86270;
+      color: #fff;
+      border-color: #f86270;
+      border-bottom: 3px solid #d64e5b;
+    }
+    
+    .btn:hover{
+      background: #ef5d6b;
+    }
+  }
+}
+
+.basket_box{
+
+  padding: 0 20px 20px;
+  background: #fff;
+  position: relative;
+
+  .basket{
+    border: 1px solid #eee;
+    height: 200px;
+
+    .title{
+      padding: 12px 20px;
+
+      span{
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      button{
+        float: right;
+        background: #e3e7ea;
+        border: 0;
+
+        i{
+          font-size: 12px;
+        }
+
+        span{
+          font-size: 12px;
+          font-weight: normal;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  .table_title{
+    margin: 0 12px;
+    background: #f5f6f7;
+    height: 36px;
+    line-height: 36px;
+    font-size: 12px;
+
+    span{
+      text-align: center;
+    }
+  }
+
+  ul{
+    margin: 8px 12px;
+    line-height: 30px;
+    font-size: 12px;
+    height: 97px;
+    overflow: auto;
+
+    span{
+      text-align: center;
+    }
+    
+    span.delete{
+      color: #ff4040;
+      cursor: pointer;
+    }
+  }
+
+  .span_width span{
+    display: inline-block;
+    width: 25%;
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .span_width span:nth-child(1){
+    width: 15%;
+  }
+
+  .span_width span:nth-child(2){
+    width: 25%;
+
+  }
+
+  .span_width span:nth-child(3){
+    width: 15%;
+  }
+
+  .span_width span:nth-child(4){
+    width: 15%;
+  }
+
+  .span_width span:nth-child(5){
+    width: 15%;
+  }
+
+  .span_width span:nth-child(6){
+    width: 15%;
+  }
+}
+
+.bet-statics-commit{
+  text-align: center;
+  padding-bottom: 30px;
+  position: relative;
+  background: #fff;
+
+  p{
+    display: inline-block;
+  }
+
+  .bet-statistics{
+    font-size: 13px;
+
+    span{
+      color: #ff4040;
+      margin: 0 4px;
+    }
+
+    .countdown{
+      display: inline-block;
+      margin-left: 10px;
+
+      .ant-statistic{
+        display: inline-block;
+
+        .ant-statistic-content{
+          display: inline-block;
+          font-size: 13px;
+          span{
+            color: #ff4040;
+          }
+        }
+      }
+    }
+  }
+
+  .btns{
+
+    .bet_btn{
+      margin-top: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      display: inline-block;
+
+      div{
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 5px;
+      }
+
+      .left{
+        height: 50px;
+        line-height: 50px;
+        vertical-align: top;
+        background: #24abe7;
+        border-bottom: 3px solid #1a90c3;
+        width: 100px;
+        font-size: 14px;
+        border-radius: 4px;
+        color: #fff;
+      }
+      
+      .left:hover{
+        background: #20a5e0;
+      }
+
+      .right{
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        color: #fff;
+        background: #f86270;
+        border-bottom: 3px solid #d64e5b;
+        width: 180px;
+        vertical-align: top;
+        border-radius: 4px;
+      }
+
+      .right:hover{
+        background: #ef5d6b;
+      }
+
+      i{
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.recording{
+  background: #fff;
+  padding: 0 20px 30px 20px;
+  margin-bottom: 30px;
+  position: relative;
+
+  .ant-tabs-tab{
+    border-radius: 0!important;
+    font-size: 13px!important;
+    padding: 0 30px!important;
+  }
+
+  .ant-tabs-tab-active{
+    border-top: 1px solid #365972!important;
+    font-weight: normal!important;
+  }
+}
+
+
+
+.trace{
+
+  .ant-tabs-tab{
+    font-size: 13px;
+  }
+  .ant-tabs-tab-active{
+    font-weight: normal!important;
+  }
+
+  .line1{
+    line-height: 40px;
+    background: #f5f6f7;
+    padding: 0 12px;
+    font-size: 13px;
+
+    div{
+      margin-right: 20px;
+      display: inline-block;
+
+      span{
+        color: #ff4040;
+        margin: 0 4px;
+        font-weight: bold;
+      }
+    }
+
+    label{
+      display: inline-block;
+
+      span{
+        font-size: 13px;
+      }
+    }
+  }
+
+  .line2{
+    line-height: 40px;
+    margin: 12px 0;
+    font-size: 13px;
+    padding: 0 12px;
+
+    .ant-input-number {
+      width: 80px;
+      border-radius: 0;
+      margin: 0 10px;
+      font-size: 13px;
+    }
+
+    button{
+      height: 32px;
+    }
+  }
+
+
+
+  .table_box{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 280px;
+
+    input{
+      width: 60px;
+      border-radius: 2px;
+      margin-right: 10px;
+      height: 28px;
+    }
+  }
+}
+
+
+
+.game_description{
+  font-size: 13px;
+  margin-bottom: 15px;
+
+  .title{
+    display: inline-block;
+    width: 60px;
+    text-align: right;
+    vertical-align: top;
+    color: #ff4040;
+    line-height: 24px;
+  }
+
+  .content{
+    display: inline-block;
+    width: 410px;
+    padding-left: 10px;
+    line-height: 24px;
+  }
+}
+
+.game_description:last-child{
+  margin-bottom: 0;
+}
+
+
+
+.order_details{
+
+  th{
+    width: 140px;
+  }
+
+  tbody{
+    th{
+      height: 46px;
+      font-size: 13px;
+      font-weight: 500;
+      background: #f7f8f9;
+      border: 1px solid #e7e8ec;
+    }
+
+    .content{
+      text-align: left;
+
+      div{
+        height: 100px;
+        padding: 10px;
+        overflow-y: auto;
+        word-wrap: break-word;
+        word-break: break-all;
+      }
+    }
+  }
+}
+
+
+
+.win_tips{
+  
+  span{
+    color: #f44;
+  }
+
+  .ant-notification-notice-icon{
+    margin-left: 0!important;
+  }
+
+  .ant-notification-notice-message{
+    display: inline-block;
+    font-size: 14px!important;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px!important;
+    margin-left: 28px!important;
+    line-height: 30px;
+  }
+
+  .ant-notification-notice-description {
+    font-size: 13px!important;
+    line-height: 22px;
+    margin-left: 0!important;
+  }
+}
+

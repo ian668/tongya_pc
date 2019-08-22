@@ -1,0 +1,63 @@
+.RepairDns{
+
+  .text{
+    margin: 50px 40px 0px 40px;
+    font-size: 13px;
+    padding: 20px 20px;
+    background: #d2d8dc;
+
+    p{
+      line-height: 24px;
+    }
+
+    strong{
+      color: #333;
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+
+  .content{
+    margin-top: 50px;
+    font-size: 13px;
+    padding-bottom: 50px;
+
+    .title{
+      padding: 15px 0 14px;
+      margin: 0 40px 50px 40px;
+      border: 1px solid #d4d9dc;
+      border-top: 2px solid #1890ff;
+      text-align: center;
+
+      div{
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+      p{
+
+      }
+    }
+    .step{
+      margin-bottom: 20px;
+      padding: 0 50px;
+
+      p{
+        line-height: 24px;
+      }
+
+      strong{
+        color: #333;
+      }
+
+      img{
+        margin: 20px 30px 20px 0;
+      }
+      
+      a{
+        color: #1890ff;
+      }
+    }
+  }
+}
