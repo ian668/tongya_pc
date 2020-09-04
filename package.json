@@ -41,7 +41,7 @@
     "lodash": "^4.17.15",
     "lottie-react-web": "^2.1.4",
     "md5": "^2.2.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react-chartjs-2": "^2.7.6",
     "react-html-parser": "^2.0.2",
     "react-infinite-scroller": "^1.2.4",
